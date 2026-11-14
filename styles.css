@@ -1,0 +1,517 @@
+:root {
+  --bg: #0d1b3e;
+  --card: #14265a;
+  --orange: #ff8a1e;
+  --orange-hover: #ffa040;
+  --blue: #2f6df6;
+  --gold: #ffd23f;
+  --text: #fff3dd;
+  --muted: #93a5d4;
+  --danger: #ff4d6d;
+  --done: #ffd23f;
+  --radius: 14px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Nunito", system-ui, sans-serif;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(255, 138, 30, 0.12), transparent 40%),
+    radial-gradient(circle at 85% 80%, rgba(47, 109, 246, 0.15), transparent 40%),
+    var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem 1rem;
+}
+
+.app {
+  width: 100%;
+  max-width: 500px;
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  border: 3px solid var(--orange);
+  box-shadow:
+    0 0 30px rgba(255, 138, 30, 0.25),
+    0 12px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* Cabecera */
+.header {
+  text-align: center;
+  margin-bottom: 1.2rem;
+}
+
+.shenron {
+  font-size: 2.6rem;
+  display: inline-block;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+h1 {
+  font-family: "Bangers", cursive;
+  font-size: 2.2rem;
+  letter-spacing: 2px;
+  color: var(--gold);
+  text-shadow:
+    3px 3px 0 var(--orange),
+    5px 5px 0 rgba(0, 0, 0, 0.35);
+  margin-top: 0.2rem;
+}
+
+.subtitle {
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+/* Formulario */
+#task-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+#task-input {
+  flex: 1 1 100%; /* ocupa la línea de arriba entera */
+  padding: 0.7rem 0.9rem;
+  border: 2px solid #27408f;
+  border-radius: var(--radius);
+  background: #0f2050;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#task-input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 12px rgba(255, 210, 63, 0.35);
+}
+
+#task-input::placeholder {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+#add-btn {
+  padding: 0.7rem 1.1rem;
+  border: none;
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, var(--orange-hover), var(--orange));
+  color: #1a0d00;
+  font-family: "Bangers", cursive;
+  font-size: 1.05rem;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: transform 0.15s, filter 0.2s;
+}
+
+#add-btn:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+}
+
+#add-btn:active {
+  transform: scale(0.96);
+}
+
+/* Filtros */
+.filters {
+  display: flex;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.filter {
+  flex: 1;
+  padding: 0.45rem;
+  border: 2px solid #27408f;
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--muted);
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filter:hover {
+  color: var(--text);
+  border-color: var(--orange);
+}
+
+.filter.active {
+  background: var(--orange);
+  border-color: var(--orange);
+  color: #1a0d00;
+}
+
+/* Esferas (checkbox estilo Dragon Ball) */
+input[type="checkbox"].orb {
+  appearance: none;
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  background:
+    radial-gradient(circle at 35% 30%, #ffdf80, #ff8a1e 65%, #d96a00);
+  border: 2px solid #b85a00;
+  box-shadow:
+    inset -3px -3px 6px rgba(0, 0, 0, 0.3),
+    0 0 0 2px rgba(255, 210, 63, 0.25);
+  position: relative;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+input[type="checkbox"].orb::after {
+  content: "★";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  color: #c25a00;
+  opacity: 0;
+  transform: scale(0.4);
+  transition: all 0.2s;
+}
+
+input[type="checkbox"].orb:hover {
+  transform: scale(1.1);
+}
+
+input[type="checkbox"].orb:checked {
+  box-shadow:
+    inset -3px -3px 6px rgba(0, 0, 0, 0.3),
+    0 0 14px 4px rgba(255, 210, 63, 0.6);
+}
+
+input[type="checkbox"].orb:checked::after {
+  opacity: 1;
+  transform: scale(1);
+  color: #7a3d00;
+}
+
+/* Lista */
+#task-list {
+  list-style: none;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.7rem 0.8rem;
+  background: #0f2050;
+  border: 2px solid transparent;
+  border-radius: var(--radius);
+  margin-bottom: 0.5rem;
+  animation: appear 0.25s ease;
+  transition: border-color 0.2s;
+}
+
+.task:hover {
+  border-color: #27408f;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.task .text {
+  flex: 1;
+  word-break: break-word;
+  font-weight: 700;
+}
+
+.task.done .text {
+  text-decoration: line-through;
+  color: var(--muted);
+}
+
+.task.done {
+  border-color: rgba(255, 210, 63, 0.35);
+}
+
+.task .delete {
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-size: 1.05rem;
+  cursor: pointer;
+  padding: 0.2rem 0.45rem;
+  border-radius: 8px;
+  transition: color 0.2s, background 0.2s, transform 0.15s;
+}
+
+.task .delete:hover {
+  color: var(--danger);
+  background: rgba(255, 77, 109, 0.12);
+  transform: scale(1.15);
+}
+
+/* Estado vacío */
+.empty {
+  text-align: center;
+  color: var(--muted);
+  font-weight: 700;
+  padding: 1.5rem 0;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Selección de nivel de poder */
+.level-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1; /* comparte la línea de abajo con el botón */
+}
+
+.level-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+#level-select {
+  flex: 1;
+  padding: 0.45rem 0.6rem;
+  border: 2px solid #27408f;
+  border-radius: var(--radius);
+  background: #0f2050;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+#level-select:focus {
+  border-color: var(--gold);
+}
+
+#level-select option {
+  background: #0f2050;
+  color: var(--text);
+}
+
+/* Insignias de nivel */
+.level-badge {
+  font-family: "Bangers", cursive;
+  font-size: 0.72rem;
+  letter-spacing: 1px;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  white-space: nowrap;
+  border: 1px solid currentColor;
+  flex-shrink: 0;
+}
+
+.lv-saiyan {
+  color: #ff9d5c;
+  background: rgba(255, 138, 30, 0.12);
+}
+
+.lv-ssj {
+  color: var(--gold);
+  background: rgba(255, 210, 63, 0.12);
+  text-shadow: 0 0 8px rgba(255, 210, 63, 0.5);
+}
+
+.lv-blue {
+  color: #4fc3ff;
+  background: rgba(79, 195, 255, 0.12);
+  text-shadow: 0 0 8px rgba(79, 195, 255, 0.5);
+}
+
+.lv-migatte {
+  color: #e0d7ff;
+  background: rgba(224, 215, 255, 0.12);
+  text-shadow: 0 0 10px rgba(224, 215, 255, 0.8);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.15);
+}
+
+/* Medidor de poder de pelea */
+.power-meter {
+  margin: 1.1rem 0 0;
+  padding: 0.7rem 0.9rem;
+  background: #0f2050;
+  border: 2px solid #27408f;
+  border-radius: var(--radius);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.2rem 0.6rem;
+  align-items: center;
+}
+
+.power-title {
+  font-family: "Bangers", cursive;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  color: var(--muted);
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+
+#power-level {
+  font-family: "Bangers", cursive;
+  font-size: 1.3rem;
+  color: var(--gold);
+  text-shadow: 0 0 10px rgba(255, 210, 63, 0.6);
+  text-align: right;
+  white-space: nowrap;
+  min-width: 3ch;
+  transform-origin: right center;
+}
+
+/* Animación que vuelve sola al tamaño normal (no queda agrandado) */
+#power-level.pop {
+  animation: pop 0.35s ease;
+}
+
+@keyframes pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.22); }
+  100% { transform: scale(1); }
+}
+
+#power-level.over-9000 {
+  color: #ff4d6d;
+  text-shadow: 0 0 14px rgba(255, 77, 109, 0.9);
+}
+
+.power-bar {
+  grid-column: 1 / -1;
+  height: 8px;
+  border-radius: 999px;
+  background: #071233;
+  overflow: hidden;
+}
+
+#power-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--orange), var(--gold));
+  box-shadow: 0 0 8px rgba(255, 210, 63, 0.7);
+  transition: width 0.5s ease;
+}
+
+/* Pie */
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+#counter {
+  color: var(--gold);
+}
+
+#clear-done {
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-family: "Bangers", cursive;
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: color 0.2s, text-shadow 0.2s;
+}
+
+#clear-done:hover {
+  color: #4fc3ff;
+  text-shadow: 0 0 10px rgba(79, 195, 255, 0.8);
+}
+
+/* Overlay Kamehameha */
+.kamehameha {
+  position: fixed;
+  inset: 0;
+  background: rgba(6, 12, 35, 0.92);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  z-index: 10;
+  animation: fade 0.2s ease;
+}
+
+/* Debe ir después de .kamehameha para ganarle a display: flex */
+.kamehameha.hidden {
+  display: none;
+}
+
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.beam {
+  width: 70%;
+  height: 18px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #7ce7ff, #4fc3ff 40%, #ffffff 90%);
+  box-shadow:
+    0 0 25px 8px rgba(79, 195, 255, 0.7),
+    0 0 60px 20px rgba(79, 195, 255, 0.4);
+  animation: blast 1s ease forwards;
+}
+
+@keyframes blast {
+  0% { transform: scaleX(0); transform-origin: left; }
+  55% { transform: scaleX(1); }
+  100% { transform: scaleX(1); opacity: 0; }
+}
+
+.shout {
+  font-family: "Bangers", cursive;
+  font-size: 2.2rem;
+  letter-spacing: 4px;
+  color: #4fc3ff;
+  text-shadow: 0 0 20px rgba(79, 195, 255, 0.9);
+  animation: shout 1s ease forwards;
+}
+
+@keyframes shout {
+  0%, 70% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.4); }
+}

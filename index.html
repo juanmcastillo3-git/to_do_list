@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Esferas del Dragón — Lista de Tareas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="header">
+      <span class="shenron">🐉</span>
+      <h1>Esferas del Dragón</h1>
+      <p class="subtitle">Reuní las 7 esferas y pedí tu deseo</p>
+    </header>
+
+    <form id="task-form" autocomplete="off">
+      <input
+        type="text"
+        id="task-input"
+        placeholder="¿Qué deseo le pedirás a Shenron?"
+        maxlength="120"
+      />
+      <div class="level-row">
+        <label for="level-select" class="level-label">Poder de pelea:</label>
+        <select id="level-select">
+          <option value="saiyan" selected>Saiyajin 🧑 (nivel 1)</option>
+          <option value="ssj">Super Saiyajin 🟡 (nivel 2)</option>
+          <option value="blue">SSJ Blue 🔵 (nivel 3)</option>
+          <option value="migatte">Migatte no Gokui ⚪ (nivel 4)</option>
+        </select>
+      </div>
+      <button type="submit" id="add-btn">⚡ ¡Invocar!</button>
+    </form>
+
+    <div class="filters">
+      <button class="filter active" data-filter="all">Todas</button>
+      <button class="filter" data-filter="pending">Por reunir</button>
+      <button class="filter" data-filter="done">Conseguidas</button>
+    </div>
+
+    <ul id="task-list"></ul>
+
+    <p id="empty-msg" class="empty hidden">Shenron ya cumplió todos tus deseos 🐉✨</p>
+
+    <footer>
+      <span id="counter">7 esferas por reunir</span>
+      <button id="clear-done" title="Elimina todas las esferas conseguidas">💥 KAMEHAMEHA</button>
+    </footer>
+
+    <div class="power-meter">
+      <span class="power-title">PODER DE PELEA</span>
+      <span id="power-level">0</span>
+      <div class="power-bar"><div id="power-fill"></div></div>
+    </div>
+  </main>
+
+  <div id="kamehameha-overlay" class="kamehameha hidden">
+    <div class="beam"></div>
+    <p class="shout">KA・ME・HA・ME・HA!</p>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
